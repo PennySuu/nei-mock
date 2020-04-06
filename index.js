@@ -7,13 +7,13 @@ let userConfig = {}
 async function start(keys) {
   await build(keys)
   updateConfig(userConfig)
-  await myExec('nei server -all -o ./nei-mock')
+  await myExec('nei server -all -o ./mock-nei')
 }
 
 function Mock(config = {}) {
   userConfig = Object.assign({online: true, keys: []}, config)
   if (!userConfig.keys.length) {
-    console.log('nei-mock error: project key is required')
+    console.log('mock-nei error: project key is required')
     return
   }
   start(userConfig.keys).catch(function (error) {
