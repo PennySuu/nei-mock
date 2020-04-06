@@ -6,12 +6,12 @@
 安装：
 
 ```bash
-npm i nei-mock -D
+npm i mock-nei -D
 ```
 
 启动本地mock服务：
 ```javascript
-const mock = require('nei-mock')
+const mock = require('mock-nei')
 const keys = ['projectKey1','projectKey2']
 mock({keys: keys})
 ```

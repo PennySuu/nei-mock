@@ -1,5 +1,5 @@
 {
-  "name": "nei-mock",
+  "name": "mock-nei",
   "version": "1.0.0",
   "description": "A NEI based mock service",
   "main": "index.js",
