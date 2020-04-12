@@ -11,9 +11,11 @@ npm i mock-nei -D
 
 启动本地mock服务：
 ```javascript
+const express = require('express')
 const mock = require('mock-nei')
+const app = express()
 const keys = ['projectKey1','projectKey2']
-mock({keys: keys})
+mock(app, {keys, online: true})
 ```
 
 ## 参数说明
@@ -21,5 +23,4 @@ mock({keys: keys})
 | 参数   | 说明                        | 默认值 | 是否必填 | 类型    |
 | ------ | --------------------------- | ------ | -------- | ------- |
 | keys   | NEI project key             | []     | 是       | Array   |
-| online | 是否使用 NEI 在线 mock 功能  | true   | 否       | Boolean |
-| port   | mock 服务端口               | 8002   | 否       | Number  |
+| online | 是否使用 NEI 在线 mock 功能  | false   | 否       | Boolean |

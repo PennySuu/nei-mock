@@ -1,24 +1,25 @@
 'use strict'
-const {build, updateConfig} = require('./lib/nei')
-const {myExec} = require('./lib/utils')
-let userConfig = {}
+const {build, generateRouterMap} = require('./lib/nei')
 
-// nei server
-async function start(keys) {
-  await build(keys)
-  updateConfig(userConfig)
-  await myExec('nei server -all -o ./mock-nei')
+async function start(app, config = {}) {
+  await build(config.keys)
+  generateRouterMap()
+  if (config.online) {
+    app.use(require('./lib/online.js'))
+  } else {
+    app.use(require('./lib/local.js'))
+  }
 }
 
-function Mock(config = {}) {
-  userConfig = Object.assign({online: true, keys: []}, config)
-  if (!userConfig.keys.length) {
+function Mock(app, config = {}) {
+  if (!config.keys.length) {
     console.log('mock-nei error: project key is required')
     return
   }
-  start(userConfig.keys).catch(function (error) {
-    console.log('promise error', error)
-  })
+  start(app, config)
+    .catch(function (error) {
+      console.log('promise error', error)
+    })
 }
 
 module.exports = Mock
