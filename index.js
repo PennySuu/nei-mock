@@ -1,7 +1,7 @@
 'use strict'
-const {build, generateRouterMap} = require('./lib/nei')
 
 async function start(app, config = {}) {
+  const {build, generateRouterMap} = require('./lib/nei')
   await build(config.keys)
   generateRouterMap()
   if (config.online) {
@@ -16,10 +16,20 @@ function Mock(app, config = {}) {
     console.log('mock-nei error: project key is required')
     return
   }
-  start(app, config)
-    .catch(function (error) {
-      console.log('promise error', error)
-    })
+  global.config = config
+  if (app) {
+    start(app, config)
+      .catch(function (error) {
+        console.log('promise error', error)
+      })
+  } else {
+    if (config.online) {
+      return require('./lib/online.js')
+    } else {
+      return require('./lib/local.js')
+    }
+  }
+
 }
 
 module.exports = Mock

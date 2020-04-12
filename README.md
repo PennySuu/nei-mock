@@ -24,3 +24,4 @@ mock(app, {keys, online: true})
 | ------ | --------------------------- | ------ | -------- | ------- |
 | keys   | NEI project key             | []     | 是       | Array   |
 | online | 是否使用 NEI 在线 mock 功能  | false   | 否       | Boolean |
+| root  | mock文件路径                 | './mock-nei'| 否       | String |
