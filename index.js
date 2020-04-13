@@ -8,7 +8,7 @@ function Mock(app, config = {}) {
   global.mock_nei_config = config
   if (app) {
     app.use(require(`./lib/${config.online ? 'online' : 'local'}.js`))
-  }else{
+  } else {
     return require(`./lib/${config.online ? 'online' : 'local'}.js`)
   }
 }
